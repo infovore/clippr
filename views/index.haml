@@ -1,0 +1,6 @@
+%h1 Clippr
+
+- @clippings.titles_and_authors.each do |title, author|
+  %li
+    %a{:href => "/books/#{title}"}= title
+    (#{author})
