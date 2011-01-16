@@ -7,7 +7,7 @@ class Clippings
   attr_reader :raw_text
   attr_reader :fragments
   
-  def initialize(file="My Clippings.txt")
+  def initialize(file="../data/My Clippings.txt")
     @raw_text = File.open(file).readlines.join.gsub(/\r/, "")
     @fragments = find_fragments
   end
@@ -44,7 +44,12 @@ class Clippings
       author = title_and_author.match(/\((.+)\)/)[1]
       title = title_and_author.gsub(" (#{author})", "").strip
       
-      output << {:title => title, :author => author, :details => details, :content => content}
+      location,datetime = details.split("|")
+      
+      location = location.gsub('- Highlight Loc. ', "").strip
+      datetime = Time.parse(datetime.gsub("Added on ", "").strip)
+      
+      output << {:title => title, :author => author, :location => location, :datetime => datetime, :content => content}
     end
     output
   end

@@ -1,0 +1,9 @@
+%h1= @title
+
+- @fragments.each do |fragment|
+  %li
+    .location
+      Locations: 
+      = fragment[:location]
+    .datetime= fragment[:datetime]
+    .content= fragment[:content]
