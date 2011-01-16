@@ -1,0 +1,5 @@
+%h1 Books
+
+%ul.books
+  - for book in @books
+    %li= link_to book.title, book

@@ -1,0 +1,11 @@
+%h1
+  = @book.title
+  (#{link_to @book.author.name, @book.author})
+
+- @book.clippings.each do |clipping|
+  %li
+    .location
+      Locations: 
+      = clipping.locations
+    .datetime= clipping.clipped_at
+    .content= clipping.content
