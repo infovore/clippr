@@ -1,5 +1,7 @@
 %h1 Books
 
+%h2= button_to "Import from Kindle.", imports_path
+
 %ul.books
   - for book in @books
     %li

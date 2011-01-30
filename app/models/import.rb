@@ -1,8 +1,8 @@
 class Import < ActiveRecord::Base
   has_many :clippings
   
-  def self.perform_import
-    raw_text = File.open(File.join(Rails.root, "data", "My Clippings.txt")).readlines.join.gsub(/\r/, "")
+  def self.perform_import_from_file(file)
+    raw_text = File.open(file).readlines.join.gsub(/\r/, "")
     
     i = Import.new
     i.raw_text = raw_text
