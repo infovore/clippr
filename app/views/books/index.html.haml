@@ -2,4 +2,6 @@
 
 %ul.books
   - for book in @books
-    %li= link_to book.title, book
+    %li
+      = link_to book.title, book
+      (#{pluralize(book.clippings.size, "Clipping")}, #{pluralize(book.notes.size, "Note")})
