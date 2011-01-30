@@ -33,11 +33,15 @@ class Import < ActiveRecord::Base
         if !related_clipping
           related_clipping = Clipping.find_by_start_location(location)
         end
-        Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i, :related_clipping => related_clipping)
+        unless Note.first(:conditions => {:content => content, :clipped_at => datetime})
+          Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i, :related_clipping => related_clipping)
+        end
       else
         locations = location.gsub('- Highlight Loc. ', "").strip
         start_loc, end_loc = Clipping.location_string_to_array(locations)
-        Clipping.create(:content => content, :clipped_at => datetime, :start_location => start_loc, :end_location => end_loc, :author_id => author, :book => book, :import => i)
+        unless Clipping.first(:conditions => {:content => content, :clipped_at => datetime})
+          Clipping.create(:content => content, :clipped_at => datetime, :start_location => start_loc, :end_location => end_loc, :author_id => author, :book => book, :import => i)
+        end
       end
     end
     
