@@ -1,6 +1,7 @@
 class Clipping < ActiveRecord::Base
   belongs_to :import
   belongs_to :book
+  has_one :note, :class_name => "Note", :foreign_key => "related_clipping_id"
   
   def loc
     start_location

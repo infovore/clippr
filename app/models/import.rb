@@ -29,7 +29,11 @@ class Import < ActiveRecord::Base
       
       if location.match("Note")
         location = location.gsub('- Note Loc. ', "").strip.to_i
-        Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i)
+        related_clipping = Clipping.find_by_end_location(location)
+        if !related_clipping
+          related_clipping = Clipping.find_by_start_location(location)
+        end
+        Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i, :related_clipping => related_clipping)
       else
         locations = location.gsub('- Highlight Loc. ', "").strip
         start_loc, end_loc = Clipping.location_string_to_array(locations)
