@@ -28,11 +28,12 @@ class Import < ActiveRecord::Base
       datetime = Time.parse(datetime.gsub("Added on ", "").strip)
       
       if location.match("Note")
-        location = location.gsub('- Note Loc. ', "").strip
+        location = location.gsub('- Note Loc. ', "").strip.to_i
         Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i)
       else
-        location = location.gsub('- Highlight Loc. ', "").strip
-        Clipping.create(:content => content, :clipped_at => datetime, :locations => location, :author_id => author, :book => book, :import => i)
+        locations = location.gsub('- Highlight Loc. ', "").strip
+        start_loc, end_loc = Clipping.location_string_to_array(locations)
+        Clipping.create(:content => content, :clipped_at => datetime, :start_location => start_loc, :end_location => end_loc, :author_id => author, :book => book, :import => i)
       end
     end
     

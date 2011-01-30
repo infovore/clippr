@@ -4,16 +4,14 @@
 
 - @book.clippings_and_notes.each do |item|
   %li
-    .location
-      - if item.is_a? Note
-        Location: 
-        = item.location
-      - elsif item.is_a? Clipping
-        Locations:
-        = item.locations
-    .datetime= item.clipped_at
-    .content
-      - if item.is_a? Note
+    - if item.is_a? Note
+      Location:
+      = item.location
+      
+      .content
         %i= item.content
-      - else
-        = item.content
+    - else
+      Locations:
+      = item.location_string
+      .datetime= item.clipped_at
+      .content= item.content

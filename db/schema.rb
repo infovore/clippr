@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130155832) do
+ActiveRecord::Schema.define(:version => 20110130161402) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -28,12 +28,13 @@ ActiveRecord::Schema.define(:version => 20110130155832) do
   create_table "clippings", :force => true do |t|
     t.text     "content"
     t.datetime "clipped_at"
-    t.string   "locations"
     t.integer  "book_id"
     t.integer  "author_id"
     t.integer  "import_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "start_location"
+    t.integer  "end_location"
   end
 
   create_table "imports", :force => true do |t|
@@ -45,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20110130155832) do
   create_table "notes", :force => true do |t|
     t.text     "content"
     t.datetime "clipped_at"
-    t.string   "location"
+    t.integer  "location",   :limit => 255
     t.integer  "book_id"
     t.integer  "author_id"
     t.integer  "import_id"
