@@ -1,9 +1,9 @@
-class Clipping < ActiveRecord::Base
+class Note < ActiveRecord::Base
   belongs_to :import
   belongs_to :book
   
   def loc
-    locations
+    location
   end
   
 end

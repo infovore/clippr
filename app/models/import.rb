@@ -20,15 +20,20 @@ class Import < ActiveRecord::Base
       author = title_and_author.match(/\((.+)\)/)[1]
       title = title_and_author.gsub(" (#{author})", "").strip
       
-      location,datetime = details.split("|")
-      
-      location = location.gsub('- Highlight Loc. ', "").strip
-      datetime = Time.parse(datetime.gsub("Added on ", "").strip)
-      
       author = Author.find_or_create_by_name(author)
       book = Book.find_or_create_by_title_and_author_id(title, author.id)
       
-      Clipping.create(:content => content, :clipped_at => datetime, :locations => location, :author_id => author, :book => book, :import => i)
+      location,datetime = details.split("|")
+      
+      datetime = Time.parse(datetime.gsub("Added on ", "").strip)
+      
+      if location.match("Note")
+        location = location.gsub('- Note Loc. ', "").strip
+        Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i)
+      else
+        location = location.gsub('- Highlight Loc. ', "").strip
+        Clipping.create(:content => content, :clipped_at => datetime, :locations => location, :author_id => author, :book => book, :import => i)
+      end
     end
     
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116181129) do
+ActiveRecord::Schema.define(:version => 20110130155832) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20110116181129) do
 
   create_table "imports", :force => true do |t|
     t.text     "raw_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", :force => true do |t|
+    t.text     "content"
+    t.datetime "clipped_at"
+    t.string   "location"
+    t.integer  "book_id"
+    t.integer  "author_id"
+    t.integer  "import_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

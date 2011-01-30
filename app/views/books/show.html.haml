@@ -2,10 +2,18 @@
   = @book.title
   (#{link_to @book.author.name, @book.author})
 
-- @book.clippings.each do |clipping|
+- @book.clippings_and_notes.each do |item|
   %li
     .location
-      Locations: 
-      = clipping.locations
-    .datetime= clipping.clipped_at
-    .content= clipping.content
+      - if item.is_a? Note
+        Location: 
+        = item.location
+      - elsif item.is_a? Clipping
+        Locations:
+        = item.locations
+    .datetime= item.clipped_at
+    .content
+      - if item.is_a? Note
+        %i= item.content
+      - else
+        = item.content
