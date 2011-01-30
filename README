@@ -1,4 +1,6 @@
 Clippr: a tool for processing Kindle Clippings
 ==============================================
 
-Put your clippings in #{Rails.root}/data/My Clippings.txt
+Plug your Kindle into your Mac.
+Run the server (rails s).
+Click the big "Import from Kindle" button. Ta-da.
