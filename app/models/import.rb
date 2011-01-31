@@ -36,7 +36,7 @@ class Import < ActiveRecord::Base
         unless Note.first(:conditions => {:content => content, :clipped_at => datetime})
           Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i, :related_clipping => related_clipping)
         end
-      else
+      elsif location.match("Highlight") # thus ignoring bookmarks.
         locations = location.gsub('- Highlight Loc. ', "").strip
         start_loc, end_loc = Clipping.location_string_to_array(locations)
         unless Clipping.first(:conditions => {:content => content, :clipped_at => datetime})
