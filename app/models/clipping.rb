@@ -15,12 +15,12 @@ class Clipping < ActiveRecord::Base
       end_loc = prefix + end_string
       [start_loc.to_i, end_loc.to_i]
     else
-      [start_loc.to_i, nil]
+      [start_loc.to_i, start_loc.to_i]
     end
   end
   
   def location_string
-    if end_location
+    if start_location != end_location
       "#{start_location}-#{end_location}"
     else
       "#{start_location}"
