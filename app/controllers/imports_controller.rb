@@ -1,6 +1,7 @@
 class ImportsController < ApplicationController
   
   def create
+    # path = File.join(Rails.root, "data", "My Clippings.txt")
     path = "/Volumes/Kindle/documents/My\ Clippings.txt"
     begin
       Import.perform_import_from_file(path)

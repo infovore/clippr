@@ -18,6 +18,10 @@ class Clipping < ActiveRecord::Base
       [start_loc.to_i, start_loc.to_i]
     end
   end
+
+  def self.find_related_clipping(location)
+    Clipping.first(:conditions => ["start_location <= ? AND end_location >= ?", location, location])
+  end
   
   def location_string
     if start_location != end_location
