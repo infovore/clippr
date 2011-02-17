@@ -4,6 +4,15 @@
 
 %ul.books
   - for book in @books
-    %li
-      = link_to book.title, book
-      (#{pluralize(book.clippings.size, "Clipping")}, #{pluralize(book.notes.size, "Note")})
+    - if book.clippings.any? || book.notes.any?
+      %li{:class => cycle("odd", "even")}
+        %h3
+          %span.title= link_to book.title, book
+          %span.author= book.author.name
+        .clippings-count
+          %span= book.clippings.size
+          = book.clippings.size == 1 ? "clipping" : "clippings"
+        .notes-count
+          %span=book.notes.size
+          = book.notes.size == 1 ? "note" : "notes"
+        = cleardiv

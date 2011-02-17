@@ -1,0 +1,66 @@
+body {
+  font-family: "Helvetica", sans-serif;
+  line-height: 1.5;
+}
+
+span.cleardiv {
+  clear: both;
+  display: block;
+}
+
+#container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#header {
+  background: black;
+  color: white;
+  padding: 5px;
+}
+
+ul.books li {
+  padding: 5px;
+}
+
+ul.books li.odd {
+  background: #ccc;
+}
+
+ul.books li h3 {
+  float: left;
+  width: 300px;
+  line-height: 1.2;
+}
+
+ul.books li h3 span.title {
+  font-size: 150%;
+}
+
+ul.books li h3 span.author {
+  display: block;
+  font-weight: normal;
+}
+
+ul.books li .clippings-count, ul.books li .notes-count {
+  float: left;
+  width: 140px;
+}
+
+ul.books li .clippings-count span, ul.books li .notes-count span {
+  font-weight: bold;
+  font-size: 150%;
+}
+
+h1.subhead {
+  background: #eee;
+  padding: 5px;
+  font-weight:bold;
+}
+
+ul.clippings li blockquote {
+  font-family: "Hoefler Text", "Georgia", serif;
+  font-style: italic;
+  line-height: 1.4;
+  padding: 10px 20px;
+}

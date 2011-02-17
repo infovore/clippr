@@ -3,12 +3,16 @@
 <head>
   <title>Clippr</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<%= yield %>
+  <div id="container">
+    <div id="header">
+      Clippr
+    </div>
+    <%= yield %>
+  </div>
 
 </body>
 </html>

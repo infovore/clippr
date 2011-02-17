@@ -1,13 +1,14 @@
-%h1
+%h1.subhead
   = @book.title
   (#{link_to @book.author.name, @book.author})
 
-- @book.clippings.each do |clipping|
-  %li
-    Locations:
-    = clipping.location_string
-    .datetime= clipping.clipped_at
-    .content= clipping.content
-    - if clipping.note
-      .note
-        %i= clipping.note.content
+%ul.clippings
+  - @book.clippings.each do |clipping|
+    %li
+      Locations:
+      = clipping.location_string
+      .datetime= clipping.clipped_at
+      %blockquote= clipping.content
+      - if clipping.note
+        .note
+          %i= clipping.note.content
