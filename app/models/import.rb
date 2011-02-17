@@ -17,7 +17,12 @@ class Import < ActiveRecord::Base
       lines.shift
       content = lines.join
       
-      author = title_and_author.match(/\((.+)\)/)[1]
+      # this needs to be sorted - add a "No Author" user on import.
+      if title_and_author.match(/\((.+)\)/)
+        author = title_and_author.match(/\((.+)\)/)[1]
+      else
+        author = nil
+      end
       title = title_and_author.gsub(" (#{author})", "").strip
       
       author = Author.find_or_create_by_name(author)
