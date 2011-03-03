@@ -64,3 +64,7 @@ ul.clippings li blockquote {
   line-height: 1.4;
   padding: 10px 20px;
 }
+
+.import-box .button_to {
+  float: left;
+}

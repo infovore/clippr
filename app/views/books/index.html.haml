@@ -1,6 +1,15 @@
 %h1 Books
 
-%h2= button_to "Import from Kindle.", imports_path
+.import-box
+  = button_to "Import from Kindle", imports_path
+  or
+  %a{:href => "#", :class => "file-import-dropdown"} import from file
+  = cleardiv
+  .import-file-fields
+    - form_tag imports_path, :multipart => true do
+      = file_field :import, :import_file
+      = submit_tag "Upload file"
+  = cleardiv
 
 %ul.books
   - for book in @books

@@ -3,7 +3,10 @@ class Import < ActiveRecord::Base
   
   def self.perform_import_from_file(file)
     raw_text = File.open(file).readlines.join.gsub(/\r/, "")
-    
+    Import.perform_import_from_raw_text(raw_text)
+  end
+  
+  def self.perform_import_from_raw_text(raw_text)
     i = Import.new
     i.raw_text = raw_text
     i.save

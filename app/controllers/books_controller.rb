@@ -6,13 +6,13 @@ class BooksController < ApplicationController
   end
   
   def show
-    
+
   end
   
   private
   
   def scope_to_book
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id], :include => [:clippings, :notes])    
   end
   
 end
