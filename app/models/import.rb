@@ -11,7 +11,7 @@ class Import < ActiveRecord::Base
     i.raw_text = raw_text
     i.save
     
-    chunks = raw_text.split("==========\n")
+    chunks = raw_text.gsub("\r", "").split("==========\n")
     chunks.pop
     chunks.each do |chunk|
       lines = chunk.split("\n")
