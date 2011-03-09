@@ -19,12 +19,22 @@ span.cleardiv {
   padding: 5px;
 }
 
+#header a:link, #header a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+#header a:hover {
+  text-decoration: underline;
+  color: red;
+}
+
 ul.books li {
   padding: 5px;
 }
 
 ul.books li.odd {
-  background: #ccc;
+  background: #eee;
 }
 
 ul.books li h3 {
@@ -52,19 +62,65 @@ ul.books li .clippings-count span, ul.books li .notes-count span {
   font-size: 150%;
 }
 
+ul.books li a:link, ul.books li a:visited {
+  color: black;
+}
+
+ul.books li a:hover {
+  color: red;
+}
+
+h1.pagetitle {
+  padding: 5px;
+  background: #ccc;
+  font-size: 18px;
+}
+
 h1.subhead {
   background: #eee;
   padding: 5px;
   font-weight:bold;
 }
 
+ul.clippings li {
+  padding: 20px 0 10px;
+  border-bottom: 1px solid #ccc;
+}
+
 ul.clippings li blockquote {
   font-family: "Hoefler Text", "Georgia", serif;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.5;
   padding: 10px 20px;
+  background: #eee;
+  margin: 0 0 10px;
+  font-size: 110%;
+}
+
+ul.clippings h3 {
+  margin: 0 0 10px;
+  font-weight: normal;
+}
+
+ul.clippings li .datetime {
+  float: left;
+  font-weight: bold;
+}
+
+ul.clippings li .location-metadata {
+  float: right;
+}
+
+ul.clippings li .note {
+  margin-left: 20px;
+  color: #888;
 }
 
 .import-box .button_to {
   float: left;
+}
+
+.import-box {
+float: right;
+  padding: 5px;
 }

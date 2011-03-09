@@ -1,5 +1,6 @@
-%h1= @author.name
+- content_for :title do
+  = @author.name
 
-%ul
+%ul.books
   - for book in @author.books
-    %li= link_to book.title, book
+    = render :partial => "books/book", :locals => {:book => book}

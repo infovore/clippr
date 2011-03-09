@@ -1,14 +1,19 @@
-%h1.subhead
+- content_for :title do
   = @book.title
   (#{link_to @book.author.name, @book.author})
 
 %ul.clippings
   - @book.clippings.each do |clipping|
     %li
-      Locations:
-      = clipping.location_string
-      .datetime= clipping.clipped_at
+      %h3
+        .datetime= format_datetime(clipping.clipped_at)
+        .location-metadata
+          - if clipping.single_location?
+            Location:
+          - else
+            Locations:
+          = clipping.location_string
+        =cleardiv
       %blockquote= clipping.content
       - if clipping.note
-        .note
-          %i= clipping.note.content
+        .note= clipping.note.content
