@@ -6,7 +6,9 @@
   - @book.clippings.each do |clipping|
     %li
       %h3
-        .datetime= format_datetime(clipping.clipped_at)
+        .datetime
+          On
+          = format_datetime(clipping.clipped_at)
         .location-metadata
           - if clipping.single_location?
             Location:
