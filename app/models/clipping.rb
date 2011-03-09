@@ -24,10 +24,14 @@ class Clipping < ActiveRecord::Base
   end
   
   def location_string
-    if start_location != end_location
-      "#{start_location}-#{end_location}"
-    else
+    if single_location?
       "#{start_location}"
+    else
+      "#{start_location}-#{end_location}"
     end
+  end
+  
+  def single_location?
+    start_location == end_location
   end
 end
