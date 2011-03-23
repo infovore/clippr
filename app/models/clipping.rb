@@ -4,6 +4,10 @@ class Clipping < ActiveRecord::Base
   has_one :note, :class_name => "Note", :foreign_key => "related_clipping_id"
   has_one :instapaper_reference
 
+  def author
+    book.author
+  end
+
   def loc
     start_location
   end
@@ -34,5 +38,10 @@ class Clipping < ActiveRecord::Base
   
   def single_location?
     start_location == end_location
+  end
+
+  def instapaper?
+    #this should probably be based on hardwired ID, not a string.
+    author.name == "Instapaper"
   end
 end
