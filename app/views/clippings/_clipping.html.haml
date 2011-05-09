@@ -4,7 +4,9 @@
       On
       = format_datetime(clipping.clipped_at)
     .location-metadata
-      - if !clipping.zero_location?
+      - if clipping.zero_location?
+        %span.is_pdf PDF
+      - else
         - if clipping.single_location?
           Location:
         - else

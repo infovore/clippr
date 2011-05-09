@@ -111,6 +111,11 @@ ul.clippings li .location-metadata {
   float: right;
 }
 
+ul.clippings li .location-metadata span.is_pdf {
+  color: #ccc;
+  font-weight: bold;
+}
+
 ul.clippings li .note {
   margin-left: 20px;
   color: #888;
