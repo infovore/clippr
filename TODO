@@ -7,11 +7,8 @@ search?
 
 admin page - to clear db, mainly.
 
-Colon issue: why does that last Quicksilver one not work? Write a TEST YOU MORON.
-
 Instapaper:
   should be a special case
-  should be pre-loaded in the db
   InstapaperReference objects can be joined to clippings - these reference the
     original article
   UI to magically, ajaxwise, guess the original article
