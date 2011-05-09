@@ -4,11 +4,12 @@
       On
       = format_datetime(clipping.clipped_at)
     .location-metadata
-      - if clipping.single_location?
-        Location:
-      - else
-        Locations:
-      = clipping.location_string
+      - if !clipping.zero_location?
+        - if clipping.single_location?
+          Location:
+        - else
+          Locations:
+        = clipping.location_string
     =cleardiv
   %blockquote= clipping.content
   - if clipping.note
