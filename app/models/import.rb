@@ -11,6 +11,11 @@ class Import < ActiveRecord::Base
     i.raw_text = raw_text
     i.save
     
+    # let's store that file anyhow
+    File.open(File.join(Rails.root, "data", Time.now.strftime("%Y%m%d%H%M%S") + ".txt"), "w") do |f|
+      f << raw_text
+    end
+
     chunks = raw_text.gsub("\r", "").split("==========\n")
     chunks.pop
     chunks.each do |chunk|
