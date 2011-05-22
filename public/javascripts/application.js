@@ -13,8 +13,23 @@ $(document).ready(function() {
     $(this).parent().siblings(".instapaper_form").show();
     return false;
   });
+
   $("a.cancel_instapaper_ref_form").click(function() {
     $(this).parents(".instapaper_form").hide();
+    return false;
+  });
+
+  $("a.find_instapaper_reference").click(function() {
+    // make an ajax request, display loading thing
+    // on success, populate the form, hide the spinner, show the form
+    $.getJSON(this.href, function(data) {
+      if(data['instapaper_reference']) {
+        var title = data['instapaper_reference']['title'];
+        var url = data['instapaper_reference']['url'];
+        console.log(title,url);
+        $(this).parent().siblings(".instapaper_form").show();
+      }
+    });
     return false;
   });
 });
