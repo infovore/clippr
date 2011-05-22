@@ -8,8 +8,9 @@ search?
 admin page - to clear db, mainly.
 
 Instapaper:
-  should be a special case
-  InstapaperReference objects can be joined to clippings - these reference the
-    original article
   UI to magically, ajaxwise, guess the original article
-  API key for the new google search api.
+
+  workflow:
+    x- find reference
+    x- makes a link in text (having saved it)
+     - edit option creates form, has save/cancel options
