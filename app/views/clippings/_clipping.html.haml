@@ -17,4 +17,4 @@
   - if clipping.note
     .note= clipping.note.content
   - if clipping.instapaper?
-    .instapaper I'm a post from instapaper.
+    = render :partial => "clippings/instapaper_reference", :locals => {:clipping => clipping}

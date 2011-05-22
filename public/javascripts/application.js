@@ -7,4 +7,14 @@ $(document).ready(function() {
     $(".import-file-fields").toggle();
     return false;
   });
+
+  $(".instapaper_form").hide();
+  $("a.toggle_instapaper_form").click(function() {
+    $(this).parent().siblings(".instapaper_form").show();
+    return false;
+  });
+  $("a.cancel_instapaper_ref_form").click(function() {
+    $(this).parents(".instapaper_form").hide();
+    return false;
+  });
 });

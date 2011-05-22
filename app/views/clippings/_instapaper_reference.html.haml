@@ -1,0 +1,17 @@
+.instapaper
+  - if clipping.instapaper_reference
+    %p
+      %b From:
+      = link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url
+      = link_to "(edit)", "#", :class => "toggle_instapaper_form"
+  - else
+    %p= link_to "Find reference", find_book_clipping_instapaper_reference_path(clipping.book,clipping), :class => "find_instapaper_reference"
+  .instapaper_form
+    = form_tag find_book_clipping_instapaper_reference_path(clipping.book, clipping) do 
+      %p
+        = label_tag :url, "URL: "
+        = text_field_tag :url
+        = label_tag :title, "Title: "
+        = text_field_tag :title
+        = submit_tag "Save"
+        = link_to "Cancel", "#", :class => "cancel_instapaper_ref_form"
