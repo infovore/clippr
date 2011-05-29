@@ -19,17 +19,26 @@ $(document).ready(function() {
     return false;
   });
 
+  $("img.instapaper_spinner").hide();
   $("a.find_instapaper_reference").click(function() {
     // make an ajax request, display loading thing
+    $(this).siblings(".instapaper_spinner").show();
+    var form = $(this).parent().siblings(".instapaper_form");
     // on success, populate the form, hide the spinner, show the form
     $.getJSON(this.href, function(data) {
       if(data['instapaper_reference']) {
         var title = data['instapaper_reference']['title'];
         var url = data['instapaper_reference']['url'];
-        console.log(title,url);
-        $(this).parent().siblings(".instapaper_form").show();
+        form.find("input[name='url']").val(url);
+        form.find("input[name='title']").val(title);
+        $("img.instapaper_spinner").hide();
+        form.show();
       }
     });
     return false;
+  });
+
+  $(".instapaper_form form").submit(function() {
+    $(this).hide();
   });
 });

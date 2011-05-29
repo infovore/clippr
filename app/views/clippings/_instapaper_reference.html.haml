@@ -5,14 +5,17 @@
       = link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url
       = link_to "(edit)", "#", :class => "toggle_instapaper_form"
   - else
-    %p= link_to "Find reference", find_book_clipping_instapaper_reference_path(clipping.book,clipping), :class => "find_instapaper_reference"
+    %p
+      = link_to "Find reference", find_book_clipping_instapaper_reference_path(clipping.book,clipping), :class => "find_instapaper_reference"
+      = image_tag("spinner.gif", :class=>"instapaper_spinner")
   .instapaper_form
     -#this needs to be conditional on edit - edit form versus create form
-    = form_tag find_book_clipping_instapaper_reference_path(clipping.book, clipping) do 
+    = form_tag book_clipping_instapaper_reference_path(clipping.book, clipping), :method => :put do
       %p
         = label_tag :url, "URL: "
-        = text_field_tag :url
+        = text_field_tag :url, (clipping.instapaper_reference.url if clipping.instapaper_reference), :id => "url_field_#{clipping.id}"
         = label_tag :title, "Title: "
-        = text_field_tag :title
-        = submit_tag "Save"
+        = text_field_tag :title, (clipping.instapaper_reference.title if clipping.instapaper_reference), :id => "title_field_#{clipping.id}"
+        = submit_tag "Save", :class => "instapaper_submit"
         = link_to "Cancel", "#", :class => "cancel_instapaper_ref_form"
+        = link_to "Delete", "#", :class => "delete_reference"
