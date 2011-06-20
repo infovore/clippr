@@ -11,6 +11,10 @@ class InstapaperReferencesController < ApplicationController
     redirect_to book_path(@clipping.book)
   end
 
+  def destroy
+    @clipping.instapaper_reference.destroy
+  end
+
   def find
     ir = InstapaperReference.find_or_create_from_clipping(@clipping)
 

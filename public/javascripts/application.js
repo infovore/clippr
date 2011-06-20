@@ -38,7 +38,9 @@ $(document).ready(function() {
     return false;
   });
 
-  $(".instapaper_form form").submit(function() {
+  $(".instapaper_form form").submit(function(e) {
     $(this).hide();
+    e.preventDefault();
+    // TODO: now refresh the front-end with the replaced text
   });
 });

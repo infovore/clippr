@@ -1,11 +1,11 @@
 .instapaper
   - if clipping.instapaper_reference
-    %p
+    %p.show_reference
       %b From:
       = link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url
       = link_to "(edit)", "#", :class => "toggle_instapaper_form"
   - else
-    %p
+    %p.find_reference
       = link_to "Find reference", find_book_clipping_instapaper_reference_path(clipping.book,clipping), :class => "find_instapaper_reference"
       = image_tag("spinner.gif", :class=>"instapaper_spinner")
   .instapaper_form
@@ -18,4 +18,4 @@
         = text_field_tag :title, (clipping.instapaper_reference.title if clipping.instapaper_reference), :id => "title_field_#{clipping.id}"
         = submit_tag "Save", :class => "instapaper_submit"
         = link_to "Cancel", "#", :class => "cancel_instapaper_ref_form"
-        = link_to "Delete", "#", :class => "delete_reference"
+        = link_to "Delete", book_clipping_instapaper_reference_path(clipping.book, clipping), :method => :delete, :class => "delete_reference"
