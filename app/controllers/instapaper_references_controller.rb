@@ -31,6 +31,7 @@ class InstapaperReferencesController < ApplicationController
 
   def destroy
     @clipping.instapaper_reference.destroy
+    redirect_to book_path(@clipping.book)
   end
 
   def find
