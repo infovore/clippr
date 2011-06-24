@@ -1,6 +1,21 @@
 class InstapaperReferencesController < ApplicationController
   before_filter :scope_to_clipping
 
+  def new
+    @instapaper_reference = InstapaperReference.new_for_clipping(@clipping)
+  end
+
+  def create
+    ir = @clipping.instapaper_reference
+    ir.destroy if ir
+
+    InstapaperReference.create(:clipping_id => @clipping.id,
+                               :title => params[:instapaper_reference][:title],
+                               :url => params[:instapaper_reference][:url])
+
+    redirect_to book_path(@clipping.book)
+  end
+
   def update
     ir = @clipping.instapaper_reference
     if ir

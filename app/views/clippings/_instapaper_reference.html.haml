@@ -6,8 +6,8 @@
       = link_to "(edit)", "#", :class => "toggle_instapaper_form"
   - else
     %p.find_reference
-      = link_to "Find reference", find_book_clipping_instapaper_reference_path(clipping.book,clipping), :class => "find_instapaper_reference"
-      = image_tag("spinner.gif", :class=>"instapaper_spinner")
+      = link_to "Find reference", new_book_clipping_instapaper_reference_path(clipping.book,clipping) #, :class => "find_instapaper_reference"
+      -#= image_tag("spinner.gif", :class=>"instapaper_spinner")
   .instapaper_form
     -#this needs to be conditional on edit - edit form versus create form
     = form_tag book_clipping_instapaper_reference_path(clipping.book, clipping), :method => :put do

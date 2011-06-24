@@ -1,0 +1,11 @@
+- form_for [@clipping.book, @clipping, @instapaper_reference], :url => {:action => :create} do |f|
+  %p
+    %label URL
+    = f.text_field :url
+
+  %p
+    %label Title
+    = f.text_field :title
+
+  %p
+    = f.submit
