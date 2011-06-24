@@ -1,11 +1,7 @@
 Clippr::Application.routes.draw do
   resources :books do
     resources :clippings do
-      resource :instapaper_reference do
-        member do
-          get 'find'
-        end
-      end
+      resource :instapaper_reference
     end
   end
   resources :authors
