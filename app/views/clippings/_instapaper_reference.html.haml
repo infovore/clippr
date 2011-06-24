@@ -3,7 +3,7 @@
     %p.show_reference
       %b From:
       = link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url
-      = link_to "(edit)", "#", :class => "toggle_instapaper_form"
+      = link_to "(edit)", new_book_clipping_instapaper_reference_path(clipping.book, clipping) #, :class => "toggle_instapaper_form"
   - else
     %p.find_reference
       = link_to "Find reference", new_book_clipping_instapaper_reference_path(clipping.book,clipping) #, :class => "find_instapaper_reference"
