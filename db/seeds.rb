@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+#
+instapaper_author = Author.create(:name => "Instapaper")
+instapaper = Book.create(:title => "Instapaper", :author => instapaper_author)

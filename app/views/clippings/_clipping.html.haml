@@ -4,12 +4,17 @@
       On
       = format_datetime(clipping.clipped_at)
     .location-metadata
-      - if clipping.single_location?
-        Location:
+      - if clipping.zero_location?
+        %span.is_pdf PDF
       - else
-        Locations:
-      = clipping.location_string
+        - if clipping.single_location?
+          Location:
+        - else
+          Locations:
+        = clipping.location_string
     =cleardiv
   %blockquote= clipping.content
   - if clipping.note
     .note= clipping.note.content
+  - if clipping.instapaper?
+    = render :partial => "clippings/instapaper_reference", :locals => {:clipping => clipping}

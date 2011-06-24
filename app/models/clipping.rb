@@ -2,7 +2,12 @@ class Clipping < ActiveRecord::Base
   belongs_to :import
   belongs_to :book
   has_one :note, :class_name => "Note", :foreign_key => "related_clipping_id"
-  
+  has_one :instapaper_reference
+
+  def author
+    book.author
+  end
+
   def loc
     start_location
   end
@@ -33,5 +38,15 @@ class Clipping < ActiveRecord::Base
   
   def single_location?
     start_location == end_location
+  end
+
+  def zero_location?
+    # ie it's come from a PDF, which has no locations.
+    start_location == 0 && end_location == 0
+  end
+
+  def instapaper?
+    #this should probably be based on hardwired ID, not a string.
+    author.name == "Instapaper"
   end
 end

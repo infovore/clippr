@@ -1,0 +1,22 @@
+-content_for :title do
+  Update Instapaper Reference for Clipping
+
+%ul.clippings
+  %li
+    %blockquote= @clipping.content
+
+.form
+  - form_for [@clipping.book, @clipping, @instapaper_reference], :url => {:action => :create} do |f|
+    %p
+      %label URL
+      = f.text_field :url
+
+    %p
+      %label Title
+      = f.text_field :title
+
+    %p
+      = f.submit
+      - if @clipping.instapaper_reference
+        or
+        = link_to "Delete", book_clipping_instapaper_reference_path(@clipping.book, @clipping), :method => :delete, :class => "delete_reference"

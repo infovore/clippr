@@ -11,6 +11,11 @@ class Import < ActiveRecord::Base
     i.raw_text = raw_text
     i.save
     
+    # let's store that file anyhow
+    File.open(File.join(Rails.root, "data", Time.now.strftime("%Y%m%d%H%M%S") + ".txt"), "w") do |f|
+      f << raw_text
+    end
+
     chunks = raw_text.gsub("\r", "").split("==========\n")
     chunks.pop
     chunks.each do |chunk|
@@ -39,13 +44,25 @@ class Import < ActiveRecord::Base
         location = location.gsub('- Note Loc. ', "").strip.to_i
         related_clipping = Clipping.find_related_clipping(location)
         unless Note.first(:conditions => {:content => content, :clipped_at => datetime})
-          Note.create(:content => content, :clipped_at => datetime, :location => location, :author_id => author, :book => book, :import => i, :related_clipping => related_clipping)
+          Note.create(:content => content,
+                      :clipped_at => datetime,
+                      :location => location,
+                      :author_id => author,
+                      :book => book,
+                      :import => i,
+                      :related_clipping => related_clipping)
         end
       elsif location.match("Highlight") # thus ignoring bookmarks.
         locations = location.gsub('- Highlight Loc. ', "").strip
         start_loc, end_loc = Clipping.location_string_to_array(locations)
         unless Clipping.first(:conditions => {:content => content, :clipped_at => datetime})
-          Clipping.create(:content => content, :clipped_at => datetime, :start_location => start_loc, :end_location => end_loc, :author_id => author, :book => book, :import => i)
+          Clipping.create(:content => content,
+                          :clipped_at => datetime,
+                          :start_location => start_loc,
+                          :end_location => end_loc,
+                          :author_id => author,
+                          :book => book,
+                          :import => i)
         end
       end
     end

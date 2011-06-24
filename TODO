@@ -2,19 +2,9 @@ First run
 Prettier
 Pictures?
 
-A thought from Aaron that would be nice: how about "export a year of clippings". Ie: date-bounded export. Would be nice. (export flat site; export flat site limited by range)
+A thought from Aaron that would be nice: how about "export a year of clippings". Ie: 
+date-bounded export. Would be nice. (export flat site; export flat site limited by range)
 search?
 
 admin page - to clear db, mainly.
 
-Colon issue: why does that last Quicksilver one not work? Write a TEST YOU MORON.
-
-PDFs: if Location is Zero, we should not display it. Look at how PMW imports.
-
-Instapaper:
-  should be a special case
-  should be pre-loaded in the db
-  InstapaperReference objects can be joined to clippings - these reference the
-    original article
-  UI to magically, ajaxwise, guess the original article
-  API key for the new google search api.
