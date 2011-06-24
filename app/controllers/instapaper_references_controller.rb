@@ -1,6 +1,13 @@
 class InstapaperReferencesController < ApplicationController
   before_filter :scope_to_clipping
 
+  def show
+    @instapaper_reference = @clipping.instapaper_reference if @clipping.instapaper_reference
+    respond_to do |format|
+      format.json { render :json => @instapaper_reference }
+    end
+  end
+
   def new
     if @clipping.instapaper_reference
       @instapaper_reference = @clipping.instapaper_reference
