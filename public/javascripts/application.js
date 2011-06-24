@@ -11,6 +11,7 @@ $(document).ready(function() {
   $(".instapaper_form").hide();
   $("a.toggle_instapaper_form").click(function() {
     $(this).parent().siblings(".instapaper_form").show();
+    populateInstapaperForm(this);
     return false;
   });
 
@@ -22,25 +23,29 @@ $(document).ready(function() {
   $("img.instapaper_spinner").hide();
   $("a.find_instapaper_reference").click(function() {
     // make an ajax request, display loading thing
-    $(this).siblings(".instapaper_spinner").show();
-    var form = $(this).parent().siblings(".instapaper_form");
-    // on success, populate the form, hide the spinner, show the form
-    $.getJSON(this.href, function(data) {
-      if(data['instapaper_reference']) {
-        var title = data['instapaper_reference']['title'];
-        var url = data['instapaper_reference']['url'];
-        form.find("input[name='url']").val(url);
-        form.find("input[name='title']").val(title);
-        $("img.instapaper_spinner").hide();
-        form.show();
-      }
-    });
+    populateInstapaperForm(this);
     return false;
   });
 
   $(".instapaper_form form").submit(function(e) {
     $(this).hide();
-    e.preventDefault();
+    //e.preventDefault();
     // TODO: now refresh the front-end with the replaced text
   });
 });
+
+function populateInstapaperForm(elm) {
+ $(elm).siblings(".instapaper_spinner").show();
+  var form = $(elm).parent().siblings(".instapaper_form");
+  // on success, populate the form, hide the spinner, show the form
+  $.getJSON(elm.href + ".json", function(data) {
+    if(data['instapaper_reference']) {
+      var title = data['instapaper_reference']['title'];
+      var url = data['instapaper_reference']['url'];
+      form.find("input[name='instapaper_reference[url]']").val(url);
+      form.find("input[name='instapaper_reference[title]']").val(title);
+      $("img.instapaper_spinner").hide();
+      form.show();
+    }
+  });
+}

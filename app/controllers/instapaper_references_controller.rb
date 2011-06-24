@@ -7,6 +7,10 @@ class InstapaperReferencesController < ApplicationController
     else
       @instapaper_reference = InstapaperReference.new_for_clipping(@clipping)
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @instapaper_reference }
+    end
   end
 
   def create
