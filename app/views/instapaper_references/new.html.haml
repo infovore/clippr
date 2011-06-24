@@ -1,11 +1,19 @@
-- form_for [@clipping.book, @clipping, @instapaper_reference], :url => {:action => :create} do |f|
-  %p
-    %label URL
-    = f.text_field :url
+-content_for :title do
+  Update Instapaper Reference for Clipping
 
-  %p
-    %label Title
-    = f.text_field :title
+%ul.clippings
+  %li
+    %blockquote= @clipping.content
 
-  %p
-    = f.submit
+.form
+  - form_for [@clipping.book, @clipping, @instapaper_reference], :url => {:action => :create} do |f|
+    %p
+      %label URL
+      = f.text_field :url
+
+    %p
+      %label Title
+      = f.text_field :title
+
+    %p
+      = f.submit
