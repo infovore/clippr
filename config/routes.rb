@@ -7,6 +7,12 @@ Clippr::Application.routes.draw do
   resources :authors
   resources :imports
   resources :clippings
+
+  resource :export do
+    member do
+      get "download"
+    end
+  end
   
   root :to => "books#index"
   

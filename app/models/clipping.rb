@@ -45,6 +45,10 @@ class Clipping < ActiveRecord::Base
     start_location == 0 && end_location == 0
   end
 
+  def is_pdf?
+    zero_location?
+  end
+
   def instapaper?
     #this should probably be based on hardwired ID, not a string.
     author.name == "Instapaper"
