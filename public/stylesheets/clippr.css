@@ -8,6 +8,14 @@ span.cleardiv {
   display: block;
 }
 
+p {
+  margin: 0 0 10px;
+}
+
+p.right {
+  float: right;
+}
+
 #container {
   width: 600px;
   margin: 0 auto;
