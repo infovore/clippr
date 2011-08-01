@@ -78,6 +78,10 @@ ul.books li a:hover {
   color: red;
 }
 
+.pagehead {
+  margin: 0 0 10px;
+}
+
 h1.pagetitle {
   padding: 5px;
   background: #ccc;
