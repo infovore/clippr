@@ -2,3 +2,17 @@
   Export clippings
 
 %p= link_to "Export all clippings", download_export_path
+
+%h2 Export clippings by date range
+
+- form_tag "/export/download", :method => :get do
+  %p
+    %label Start Date
+    = date_select("start_date", nil)
+
+  %p
+    %label End Date
+    = date_select("end_date", nil)
+
+  %p
+    = submit_tag "export"

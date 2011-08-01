@@ -4,7 +4,11 @@ class ExportsController < ApplicationController
 
   def download 
     if params[:start_date] && params[:end_date]
-      @clippings = Clipping.where("state_date >= ?", params[:start_date]).where("end_date < ?", params[:end_date])
+      # TODO: there has to be a more native way of interpreting those bloody
+      # date selects
+      start_date = [params[:start_date]["(1i)"], params[:start_date]["(2i)"], params[:start_date]["(3i)"]].join("-")
+      end_date = [params[:end_date]["(1i)"], params[:end_date]["(2i)"], params[:end_date]["(3i)"]].join("-")
+      @clippings = Clipping.where("created_at >= ?", start_date).where("created_at < ?", end_date) 
     else
       @clippings = Clipping.all
     end
