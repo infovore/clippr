@@ -10,6 +10,10 @@ span.cleardiv {
 
 form.invisible {
   display: none;
+
+#container {
+  width: 600px;
+  margin: 0 auto;
 }
 
 .topbar .import {

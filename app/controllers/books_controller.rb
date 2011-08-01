@@ -6,7 +6,12 @@ class BooksController < ApplicationController
   end
   
   def show
-
+    respond_to do |format|
+      format.html
+      format.xml do 
+        render :xml => @book.clippings.to_xml
+      end
+    end
   end
   
   private
