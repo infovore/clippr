@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html
       format.xml do 
-        render :xml => @book.clippings.to_xml
+        render :xml => @book.clippings.to_xml(:include => {:instapaper_reference => {}, :book => {:include => :author}})
       end
     end
   end
