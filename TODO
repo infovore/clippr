@@ -1,12 +1,21 @@
 First run
 Prettier
 Pictures?
+admin page - to clear db, mainly.
 
 A thought from Aaron that would be nice: how about "export a year of clippings". Ie: 
 date-bounded export. Would be nice. (export flat site; export flat site limited by range)
+
+export:
+  √ book (method on book controller)
+  √ all (method on exports controller)
+  √ date range (method on exports controller)
+  individual clipping to markup in a lightbox? (method on... clipping?)
+    - should there be a little customisable options field with a template?
+  fine-tune default fields for clipping#to_xml - should definitely remove id, for instance.
+
 search?
 
-admin page - to clear db, mainly.
 
 Rename Book:
 

@@ -13,6 +13,7 @@ class ExportsController < ApplicationController
       @clippings = Clipping.all
     end
     # render clippings as xml
-    render :xml => @clippings.to_xml(:include => {:instapaper_references_controller => {}, :book => {:include => :author}})
+    #render :xml => @clippings.to_xml(:include => {:instapaper_references_controller => {}, :book => {:include => :author}})
+    render :xml => @clippings.to_xml_for_export
   end
 end
