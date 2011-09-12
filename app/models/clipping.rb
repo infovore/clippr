@@ -53,4 +53,9 @@ class Clipping < ActiveRecord::Base
     #this should probably be based on hardwired ID, not a string.
     author.name == "Instapaper"
   end
+  
+  def to_xml_for_export
+    to_xml(:except => ['import_id', 'id', 'author_id','book_id', 'created_at','updated_at'],
+           :include => {:instapaper_reference => {}, :book => {:include => :author}})
+  end
 end
