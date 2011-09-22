@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title
+      = yield :title_element
+      Clippr
+    = stylesheet_link_tag :all
+    = stylesheet_link_tag "bootstrap.min.css"
+    = stylesheet_link_tag "clippr"
+    = javascript_include_tag "jquery.min.js"
+    = javascript_include_tag "jquery_ujs.js"
+    = javascript_include_tag "application" 
+    = csrf_meta_tag
+  %body
+    .topbar
+      .container.fixed
+        %h3= link_to "Clippr", "/"
+    .container.main
+      #flash
+        - flash.each do |key, value|
+          %div{:class => "alert-message #{key}"}= value
+      = yield
