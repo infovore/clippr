@@ -1,11 +1,11 @@
 %li{:class => cycle("odd", "even")}
-  %h3
-    %span.title= link_to book.title, book
-    %span.author= book.author.name
-  .clippings-count
-    %span= book.clippings.size
-    = book.clippings.size == 1 ? "clipping" : "clippings"
-  .notes-count
-    %span=book.notes.size
-    = book.notes.size == 1 ? "note" : "notes"
-  = cleardiv
+  .row
+    .details.span8
+      %h3= link_to book.title, book
+      %h4= book.author.name
+    .clippings-count.span4
+      %span= book.clippings.size
+      = book.clippings.size == 1 ? "clipping" : "clippings"
+    .notes-count.span4
+      %span=book.notes.size
+      = book.notes.size == 1 ? "note" : "notes"
