@@ -6,6 +6,7 @@ Clippr::Application.routes.draw do
   end
   resources :authors
   resources :imports
+  resources :clippings
   
   root :to => "books#index"
   
