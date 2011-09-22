@@ -13,10 +13,16 @@
     = csrf_meta_tag
   %body
     .topbar
-      .container.fixed
-        %h3= link_to "Clippr", "/"
+      .topbar-inner
+        .container
+          %h3= link_to "Clippr", "/"
+          %ul.nav
+            %li= link_to "Books", "/"
+            %li= link_to "Authors", authors_path
+            %li= link_to "Clippings", clippings_path
     .container.main
       #flash
         - flash.each do |key, value|
           %div{:class => "alert-message #{key}"}= value
+      %h1= yield :title
       = yield

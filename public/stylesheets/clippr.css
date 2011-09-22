@@ -1,7 +1,5 @@
-.container.main {
+body {
+  /* accounting for topbar */
   padding-top: 60px;
 }
 
-.topbar {
-  background: black;
-}
