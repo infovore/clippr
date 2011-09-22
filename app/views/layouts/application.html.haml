@@ -20,6 +20,7 @@
             %li= link_to "Books", "/"
             %li= link_to "Authors", authors_path
             %li= link_to "Clippings", clippings_path
+          .import=link_to "Import"
     .container.main
       #flash
         - flash.each do |key, value|

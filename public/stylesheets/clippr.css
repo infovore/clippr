@@ -8,6 +8,17 @@ span.cleardiv {
   clear: both;
 }
 
+.topbar .import {
+  float: right;
+  padding: 11px 0;
+}
+
+.topbar .import a:hover {
+  text-decoration: none;
+  color: white;
+}
+  
+
 ul.books {
   margin: 0;
   padding: 0;
