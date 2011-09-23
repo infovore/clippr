@@ -37,3 +37,10 @@ ul.books li h4 {
   line-height: 1;
 }
 
+ul.books li .clippings-count, ul.books li .notes-count {
+  font-size: 120%;
+}
+
+ul.books li .clippings-count span, ul.books li .notes-count span {
+  font-size: 140%;
+}
