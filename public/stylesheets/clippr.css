@@ -19,6 +19,7 @@ span.cleardiv {
 }
   
 
+/* books list */ 
 ul.books {
   margin: 0;
   padding: 0;
@@ -45,6 +46,30 @@ ul.books li .clippings-count span, ul.books li .notes-count span {
   font-size: 140%;
 }
 
+/* authors list */
+
+
+ul.authors{
+  margin: 0;
+  padding: 0;
+}
+
+ul.authors li {
+  list-style: none;
+  margin: 0 0 20px;
+}
+ul.authors li h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+ul.authors li .clippings-count, ul.authors li .books-count {
+  font-size: 120%;
+}
+
+ul.authors li .clippings-count span, ul.authors li .books-count span {
+  font-size: 140%;
+}
 /* clippings */
 
 ul.clippings {

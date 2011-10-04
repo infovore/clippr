@@ -3,8 +3,4 @@
 
 %ul.authors
   - for author in @authors
-    %li
-      = link_to author.name, author
-      (#{pluralize(author.books.size, "book")} with #{pluralize(author.clippings.size, "clipping")})
-
-
+    = render :partial => "authors/author", :locals => {:author => author}
