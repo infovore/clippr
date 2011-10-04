@@ -3,6 +3,6 @@
 
 
 %ul.clippings
-  = render :partial => "clippings/clipping", :collection => @clippings
+  = render :partial => "clippings/clipping", :collection => @clippings, :locals => {:show_book => true}
 
 = paginate @clippings
