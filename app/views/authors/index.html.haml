@@ -1,0 +1,10 @@
+- content_for :title do
+  Authors
+
+%ul.authors
+  - for author in @authors
+    %li
+      = link_to author.name, author
+      (#{pluralize(author.books.size, "book")} with #{pluralize(author.clippings.size, "clipping")})
+
+
