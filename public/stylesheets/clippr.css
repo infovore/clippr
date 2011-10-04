@@ -44,3 +44,41 @@ ul.books li .clippings-count, ul.books li .notes-count {
 ul.books li .clippings-count span, ul.books li .notes-count span {
   font-size: 140%;
 }
+
+/* clippings */
+
+ul.clippings {
+  margin: 0;
+  padding: 0;
+}
+
+ul.clippings li {
+  list-style: none;
+  margin: 0 0 20px;
+}
+
+ul.clippings li h3 {
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+
+ul.clippings li h3 .datetime {
+  display: inline;
+}
+ul.clippings li h3 .location-metadata {
+  color: #888;
+  font-weight: normal;
+  display: inline;
+  margin-left: 1em; 
+}
+
+ul.clippings li blockquote {
+  font-size: 120%;
+  line-height: 1.3;
+}
+
+ul.clippings li .note {
+  font-size: 110%;
+  font-style: italic;
+}
+
