@@ -9,6 +9,8 @@
     = stylesheet_link_tag "clippr"
     = javascript_include_tag "jquery.min.js"
     = javascript_include_tag "jquery_ujs.js"
+    = javascript_include_tag "bootstrap-modal"
+    = javascript_include_tag "bootstrap-dropdown"
     = javascript_include_tag "application" 
     = csrf_meta_tag
   %body
@@ -20,7 +22,13 @@
             %li= link_to "Books", "/"
             %li= link_to "Authors", authors_path
             %li= link_to "Clippings", clippings_path
-          .import=link_to "Import"
+          -#.import=link_to "Import"
+          %ul.nav.secondary-nav
+            %li.dropdown{"data-dropdown" => "dropdown"}
+              = link_to "Import", "#", :class => "dropdown-toggle"
+              %ul.dropdown-menu
+                %li= link_to "Import from Kindle", imports_path
+                %li= link_to "Import from file"
     .container.main
       #flash
         - flash.each do |key, value|
