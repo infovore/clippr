@@ -107,3 +107,18 @@ ul.clippings li .note {
   font-style: italic;
 }
 
+/* instapaper edit reference */
+
+.instapaper_form p label {
+  display: inline;
+  float: none;
+  width: auto;
+}
+
+.instapaper_form p input {
+  display: inline;
+}
+
+.instapaper_form p input[type=text] {
+  margin-right: 10px;
+}

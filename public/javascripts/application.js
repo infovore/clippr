@@ -12,13 +12,13 @@ $(document).ready(function() {
   $(".form_spinner").hide();
 
   $("a.toggle_instapaper_form").live("click", function() {
-    $(this).parent().siblings(".instapaper_form").show();
+    $(this).parent().siblings(".instapaper_form").slideDown("fast");
     populateInstapaperForm(this);
     return false;
   });
 
   $("a.cancel_instapaper_ref_form").click(function() {
-    $(this).parents(".instapaper_form").hide();
+    $(this).parents(".instapaper_form").slideUp("fast");
     return false;
   });
 
