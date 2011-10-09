@@ -8,6 +8,10 @@ span.cleardiv {
   clear: both;
 }
 
+form.invisible {
+  display: none;
+}
+
 .topbar .import {
   float: right;
   padding: 11px 0;

@@ -1,0 +1,19 @@
+.topbar
+  .topbar-inner
+    .container
+      %h3= link_to "Clippr", "/"
+      %ul.nav
+        %li= link_to "Books", "/"
+        %li= link_to "Authors", authors_path
+        %li= link_to "Clippings", clippings_path
+      -#.import=link_to "Import"
+      %ul.nav.secondary-nav
+        %li.dropdown{"data-dropdown" => "dropdown"}
+          = link_to "Import", "#", :class => "dropdown-toggle"
+          %ul.dropdown-menu
+            %li
+              = form_tag(imports_path, :class => "invisible") do
+                &nbsp;
+                
+              = link_to "Import from Kindle", imports_path, :class => "import-from-kindle"
+            %li= link_to "Import from file"

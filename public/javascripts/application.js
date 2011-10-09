@@ -11,6 +11,15 @@ $(document).ready(function() {
     return false;
   });
 
+  /* import link from topbar */
+
+  $(".import-from-kindle").click(function() {
+    $("form.invisible").submit();
+    return false;
+  });
+
+  /* instapaper form stuff */
+
   $(".instapaper_form").hide();
   $(".form_spinner").hide();
 

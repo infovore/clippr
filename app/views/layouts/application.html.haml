@@ -14,21 +14,7 @@
     = javascript_include_tag "application" 
     = csrf_meta_tag
   %body
-    .topbar
-      .topbar-inner
-        .container
-          %h3= link_to "Clippr", "/"
-          %ul.nav
-            %li= link_to "Books", "/"
-            %li= link_to "Authors", authors_path
-            %li= link_to "Clippings", clippings_path
-          -#.import=link_to "Import"
-          %ul.nav.secondary-nav
-            %li.dropdown{"data-dropdown" => "dropdown"}
-              = link_to "Import", "#", :class => "dropdown-toggle"
-              %ul.dropdown-menu
-                %li= link_to "Import from Kindle", imports_path
-                %li= link_to "Import from file"
+    = render "layouts/topbar"
     .container.main
       #flash
         - flash.each do |key, value|
