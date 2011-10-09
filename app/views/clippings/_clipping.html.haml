@@ -13,7 +13,7 @@
           Locations:
         = clipping.location_string
         - if local_assigns[:show_book]
-          - if clipping.instapaper?
+          - if clipping.instapaper? && clipping.instapaper_reference
             (#{link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url} via #{link_to "Instapaper", clipping.book})
           - else
             (#{link_to clipping.book.title, clipping.book} by #{link_to clipping.book.author.name, clipping.book.author})
