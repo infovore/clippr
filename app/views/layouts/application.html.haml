@@ -21,3 +21,6 @@
           %div{:class => "alert-message #{key}"}= value
       %h1= yield :title
       = yield
+      = render "layouts/modal_file_dialog"
+      = cleardiv
+

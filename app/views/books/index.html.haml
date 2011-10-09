@@ -1,18 +1,6 @@
 - content_for :title do
   Books
 
-.import-box
-  = button_to "Import from Kindle", imports_path
-  or
-  %a{:href => "#", :class => "file-import-dropdown"} import from file
-  = cleardiv
-  .import-file-fields
-    - form_tag imports_path, :multipart => true do
-      = file_field :import, :import_file
-      = submit_tag "Upload file"
-  = cleardiv
-=cleardiv
-
 %ul.books
   - for book in @books
     - if book.clippings.any? || book.notes.any?

@@ -1,0 +1,10 @@
+#modal-file-dialog.modal.hide
+  .modal-header
+    = link_to raw("&times;"), "#", :class => "close"
+    %h3 Import from file
+    - form_tag imports_path, :multipart => true do
+      .modal-body
+        = file_field :import, :import_file
+      .modal-footer
+        -#= submit_tag "Upload file"
+        = link_to "Upload file", "#", :class => "btn primary submit-file-upload"

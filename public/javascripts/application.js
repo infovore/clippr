@@ -5,16 +5,16 @@ $(document).ready(function() {
   // from bootstrap-dropdown.js
    $('#topbar').dropdown()
 
-  $(".import-file-fields").hide();
-  $(".file-import-dropdown").click(function() {
-    $(".import-file-fields").toggle();
-    return false;
-  });
-
   /* import link from topbar */
 
   $(".import-from-kindle").click(function() {
     $("form.invisible").submit();
+    return false;
+  });
+
+  /* import modal dialog */
+  $(".submit-file-upload").click(function() {
+    $(this).parents("form").submit();
     return false;
   });
 
