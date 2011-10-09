@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   private
   
   def scope_to_book
-    @book = Book.find(params[:id], :include => [:clippings, :notes])    
+    @book = Book.where("book_names.slug" => params[:id]).joins(:book_name).includes([:clippings, :notes]).first
   end
   
 end

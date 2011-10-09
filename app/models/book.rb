@@ -7,4 +7,8 @@ class Book < ActiveRecord::Base
   def after_create
     BookName.create(:book => self, :display_name => self.title)
   end
+
+  def to_param
+    book_name.slug
+  end
 end
