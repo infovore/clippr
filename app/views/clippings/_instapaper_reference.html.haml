@@ -15,7 +15,7 @@
         = text_field :instapaper_reference, :url, :id => "url_field_#{clipping.id}"
         = label_tag :title, "Title: "
         = text_field :instapaper_reference, :title, :id => "title_field_#{clipping.id}"
-        = submit_tag "Save", :class => "instapaper_submit"
+        = submit_tag "Save", :class => "instapaper_submit btn"
         = link_to "Cancel", "#", :class => "cancel_instapaper_ref_form"
         = link_to "Delete", book_clipping_instapaper_reference_path(clipping.book, clipping), :method => :delete, :class => "delete_reference"
         = image_tag("spinner.gif", :class=>"form_spinner")
