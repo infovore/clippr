@@ -9,13 +9,15 @@
 %h2 Export clippings by date range
 
 - form_tag "/export/download", :method => :get do
-  %p
+  .clearfix
     %label Start Date
-    = date_select("start_date", nil)
+    .input
+      = date_select("start_date", nil)
 
-  %p
+  .clearfix
     %label End Date
-    = date_select("end_date", nil)
+    .input
+      = date_select("end_date", nil)
 
-  %p
-    = submit_tag "export"
+  .actions
+    = submit_tag "Export", :class => "btn primary"
