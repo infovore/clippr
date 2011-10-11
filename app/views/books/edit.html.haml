@@ -1,0 +1,11 @@
+- content_for :title_element do
+  Edit "#{@book.display_name}" : #{@book.author.name} :
+
+- content_for :title do
+  Edit "#{@book.display_name}" (#{link_to @book.author.name, @book.author})
+
+- form_for @book do |f|
+  %p
+    = f.label "Title to display"
+    = f.text_field :display_name
+  %p= f.submit "Edit"

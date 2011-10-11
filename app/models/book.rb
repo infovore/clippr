@@ -11,4 +11,8 @@ class Book < ActiveRecord::Base
   def to_param
     book_name.slug
   end
+
+  def display_name
+    book_name.display_name
+  end
 end

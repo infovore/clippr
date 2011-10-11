@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_filter :scope_to_book, :only => [:show]
+  before_filter :scope_to_book, :only => [:show, :edit, :update]
   
   def index
     @books = Book.all
@@ -12,6 +12,18 @@ class BooksController < ApplicationController
         render :xml => @book.clippings.to_xml(:include => {:instapaper_reference => {}, :book => {:include => :author}})
       end
     end
+  end
+
+  def edit
+    @book_name = @book.book_name
+  end
+
+  def update
+    @book_name = @book.book_name
+    @book_name.display_name = params[:book][:display_name]
+    @book_name.save
+    redirect_to @book
+    #render :text => params.inspect
   end
   
   private

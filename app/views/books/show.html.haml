@@ -1,9 +1,10 @@
 - content_for :title_element do
-  #{@book.title} : #{@book.author.name} :
+  #{@book.display_name} : #{@book.author.name} :
 
 - content_for :title do
-  = @book.title
+  = @book.display_name
   (#{link_to @book.author.name, @book.author})
+%p= link_to "Edit book title", edit_book_path(@book)
 %p
   - if @book.clippings.size > 1
     #{@book.clippings.size} clippings, between #{format_datetime(@book.clippings.first.clipped_at)} and #{format_datetime(@book.clippings.last.clipped_at)}.

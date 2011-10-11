@@ -1,7 +1,7 @@
 %li{:class => cycle("odd", "even")}
   .row
     .details.span8
-      %h3= link_to book.title, book
+      %h3= link_to book.display_name, book
       %h4= book.author.name
     .clippings-count.span4
       %span= book.clippings.size
