@@ -4,15 +4,10 @@ class Book < ActiveRecord::Base
   has_many :notes, :dependent => :destroy
   has_one :book_name, :dependent => :destroy
 
-  def after_create
-    BookName.create(:book => self, :display_name => self.title)
-  end
+  acts_as_url :display_name, :url_attribute => :slug, :sync_url => true
 
   def to_param
-    book_name.slug
+    slug
   end
 
-  def display_name
-    book_name.display_name
-  end
 end
