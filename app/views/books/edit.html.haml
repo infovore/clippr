@@ -5,7 +5,9 @@
   Edit "#{@book.display_name}" (#{link_to @book.author.name, @book.author})
 
 - form_for @book do |f|
-  %p
+  .clearfix 
     = f.label "Title to display"
-    = f.text_field :display_name
-  %p= f.submit "Edit"
+    .input
+      = f.text_field :display_name, :class => "xlarge"
+  .actions
+    = f.submit "Update", :class => "btn primary"
