@@ -4,14 +4,14 @@
 - content_for :title do
   = @book.display_name
   (#{link_to @book.author.name, @book.author})
-%p= link_to "Edit book title", edit_book_path(@book)
+%p= link_to "Edit book title", edit_author_book_path(@book.author, @book)
 %p
   - if @book.clippings.size > 1
     #{@book.clippings.size} clippings, between #{format_datetime(@book.clippings.first.clipped_at)} and #{format_datetime(@book.clippings.last.clipped_at)}.
   - elsif @book.clippings.size == 1
     1 clipping, on #{format_datetime(@book.clippings.first.clipped_at)}.
 
-  = link_to "Export clippings as XML.", book_path(@book, :format => :xml)
+  = link_to "Export clippings as XML.", author_book_path(@book.author, @book, :format => :xml)
 
 %ul.clippings
   = render :partial => "clippings/clipping", :collection => @book.clippings

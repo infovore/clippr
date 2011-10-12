@@ -1,10 +1,11 @@
 Clippr::Application.routes.draw do
-  resources :books do
-    resources :clippings do
-      resource :instapaper_reference
+  resources :authors do
+    resources :books do
+      resources :clippings do
+        resource :instapaper_reference
+      end
     end
   end
-  resources :authors
   resources :imports
   resources :clippings
 

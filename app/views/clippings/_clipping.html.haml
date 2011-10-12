@@ -14,9 +14,9 @@
         = clipping.location_string
         - if local_assigns[:show_book]
           - if clipping.instapaper? && clipping.instapaper_reference
-            (#{link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url} via #{link_to "Instapaper", clipping.book})
+            (#{link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url} via #{link_to "Instapaper", [clipping.book.author, clipping.book]})
           - else
-            (#{link_to clipping.book.display_name, clipping.book} by #{link_to clipping.book.author.name, clipping.book.author})
+            (#{link_to clipping.book.display_name, [clipping.book.author, clipping.book]} by #{link_to clipping.book.author.name, clipping.book.author})
     =cleardiv
   %blockquote= clipping.content
   - if clipping.note

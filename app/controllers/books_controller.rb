@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   def update
     @book.display_name = params[:book][:display_name]
     @book.save
-    redirect_to @book
+    redirect_to [@book.author, @book]
   end
   
   private

@@ -27,7 +27,7 @@ class InstapaperReferencesController < ApplicationController
                                :title => params[:instapaper_reference][:title],
                                :url => params[:instapaper_reference][:url])
 
-    redirect_to book_path(@clipping.book)
+    redirect_to author_book_path(@clipping.book.author, @clipping.book)
   end
 
   def update
@@ -37,12 +37,12 @@ class InstapaperReferencesController < ApplicationController
       ir.url = params[:instapaper_reference][:url]
       ir.save
     end
-    redirect_to book_path(@clipping.book)
+    redirect_to author_book_path(@clipping.book.author, @clipping.book)
   end
 
   def destroy
     @clipping.instapaper_reference.destroy
-    redirect_to book_path(@clipping.book)
+    redirect_to author_book_path(@clipping.book.author, @clipping.book)
   end
 
   private

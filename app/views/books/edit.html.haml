@@ -4,7 +4,7 @@
 - content_for :title do
   Edit "#{@book.display_name}" (#{link_to @book.author.name, @book.author})
 
-- form_for @book do |f|
+- form_for [@book.author, @book] do |f|
   .clearfix 
     = f.label "Title to display"
     .input
