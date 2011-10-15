@@ -17,7 +17,6 @@ class Import < ActiveRecord::Base
     end
 
     chunks = raw_text.gsub("\r", "").split("==========\n")
-    chunks.pop
     chunks.each do |chunk|
       lines = chunk.split("\n")
       title_and_author = lines.shift
