@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/100hz/rails-settings.git
+  revision: 160bbca5386790a602ec420636f02ee6ce43d8b8
+  specs:
+    rails-settings (0.1.2)
+      rails (>= 3.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -88,6 +95,7 @@ DEPENDENCIES
   kaminari
   nokogiri
   rails (= 3.0.3)
+  rails-settings!
   sqlite3-ruby
   stringex
   thin

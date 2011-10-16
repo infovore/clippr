@@ -27,3 +27,5 @@ gem 'nokogiri'
 gem 'jquery-rails', '>= 1.0.3'
 gem 'kaminari'
 gem 'stringex'
+gem "rails-settings", :git => "git://github.com/100hz/rails-settings.git"
+
