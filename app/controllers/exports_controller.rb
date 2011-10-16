@@ -1,5 +1,7 @@
 class ExportsController < ApplicationController
   def show
+    @html_template = Settings.single_clipping_html_template
+    @title_template = Settings.book_title_html_template
   end
 
   def download 
@@ -15,5 +17,12 @@ class ExportsController < ApplicationController
     # render clippings as xml
     #render :xml => @clippings.to_xml(:include => {:instapaper_references_controller => {}, :book => {:include => :author}})
     render :xml => @clippings.to_xml_for_export
+  end
+
+  def update_html_settings
+    Settings.single_clipping_html_template = params[:template]
+    Settings.book_title_html_template = params[:title_template]
+    flash[:success] = "HTML clipping template updated."
+    redirect_to export_path
   end
 end

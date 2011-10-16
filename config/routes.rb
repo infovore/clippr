@@ -1,6 +1,9 @@
 Clippr::Application.routes.draw do
   resources :authors do
     resources :books do
+      member do
+        get 'html_export'
+      end
       resources :clippings do
         resource :instapaper_reference
       end
@@ -12,6 +15,7 @@ Clippr::Application.routes.draw do
   resource :export do
     member do
       get "download"
+      post "update_html_settings"
     end
   end
   

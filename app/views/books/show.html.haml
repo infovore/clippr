@@ -12,6 +12,7 @@
     1 clipping, on #{format_datetime(@book.clippings.first.clipped_at)}.
 
   = link_to "Export clippings as XML.", author_book_path(@book.author, @book, :format => :xml)
+  = link_to "Export book as HTML for blog.", html_export_author_book_path(@book.author, @book)
 
 %ul.clippings
   = render :partial => "clippings/clipping", :collection => @book.clippings

@@ -58,4 +58,15 @@ class Clipping < ActiveRecord::Base
     to_xml(:except => ['import_id', 'id', 'author_id','book_id', 'created_at','updated_at'],
            :include => {:instapaper_reference => {}, :book => {:include => :author}})
   end
+
+  def to_templated_html(template)
+    output = template.gsub("$quote", self.content)
+    output = output.gsub("$locations", "Locations: " + self.location_string)
+    if self.note
+      output = output.gsub("$ifnote", "").gsub("$endifnote", "")
+      output = output.gsub("$note", self.note.content)
+    else
+      output = output.gsub(/(\$ifnote).+(\$endifnote)/, "")
+    end
+  end
 end

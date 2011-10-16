@@ -11,6 +11,10 @@ class Book < ActiveRecord::Base
     slug
   end
 
+  def title_and_author_for_html(template)
+    template.gsub("$title", self.display_name).gsub("$author", self.author.name)
+  end
+
   private
 
   def populate_display_name

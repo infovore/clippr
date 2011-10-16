@@ -21,3 +21,32 @@
 
   .actions
     = submit_tag "Export", :class => "btn primary"
+
+%h2 HTML template for clipping export
+
+- form_tag "/export/update_html_settings" do
+  .clearfix
+    %label Single clipping format
+    .input
+      = text_area_tag "template", @html_template, :class => "xxlarge", :rows => 5
+      %span.help-block
+        Substitution variables:
+        %code $quote
+        %code $locations
+        %code $note
+        You can wrap conditional content for notes in 
+        %code $ifnote
+        and
+        %code $endifnote
+  .clearfix
+    %label Book title/author format
+    .input
+      = text_area_tag "title_template", @title_template, :class => "xxlarge"
+      %span.help-block
+        Substitution variables
+        %code $title
+        %code $author
+
+        
+  .actions
+    = submit_tag "Update", :class => "btn primary"

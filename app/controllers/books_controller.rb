@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_filter :scope_to_book, :only => [:show, :edit, :update]
+  before_filter :scope_to_book, :only => [:show, :edit, :update, :html_export]
   
   def index
     @books = Book.all
@@ -12,6 +12,15 @@ class BooksController < ApplicationController
         render :xml => @book.clippings.to_xml(:include => {:instapaper_reference => {}, :book => {:include => :author}})
       end
     end
+  end
+
+  def html_export
+    output = ""
+    output << @book.title_and_author_for_html(Settings.book_title_html_template)
+    @book.clippings.each do |clipping|
+      output << clipping.to_templated_html(Settings.single_clipping_html_template)
+    end
+    render :text => output
   end
 
   def update
