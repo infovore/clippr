@@ -5,6 +5,9 @@ Clippr::Application.routes.draw do
         get 'html_export'
       end
       resources :clippings do
+        member do
+          get 'html_export'
+        end
         resource :instapaper_reference
       end
     end
