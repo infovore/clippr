@@ -17,6 +17,8 @@
             (#{link_to clipping.instapaper_reference.title, clipping.instapaper_reference.url} via #{link_to "Instapaper", [clipping.book.author, clipping.book]})
           - else
             (#{link_to clipping.book.display_name, [clipping.book.author, clipping.book]} by #{link_to clipping.book.author.name, clipping.book.author})
+    .export
+      = link_to "Export as HTML", html_export_author_book_clipping_path(clipping.book.author, clipping.book, clipping), :class => "clipping_html_export"
     =cleardiv
   %blockquote= clipping.content
   - if clipping.note

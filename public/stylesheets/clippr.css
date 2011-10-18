@@ -12,6 +12,10 @@ form.invisible {
   display: none;
 }
 
+.modal form textarea {
+  width: 100%;
+}
+
 .topbar .import {
   float: right;
   padding: 11px 0;
@@ -100,6 +104,11 @@ ul.clippings li h3 .location-metadata {
   display: inline;
   margin-left: 1em; 
 }
+
+ul.clippings li h3 .export {
+  font-weight: normal;
+  display: inline;
+  margin-left: 1em;
 
 ul.clippings li blockquote {
   font-size: 120%;

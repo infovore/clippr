@@ -18,6 +18,32 @@ $(document).ready(function() {
     return false;
   });
 
+  /* single post modal dialogue */
+
+  $(".clipping_html_export").click(function() {
+    $("#exportmodal").remove();
+    $.get(this.href, function(data) {
+      var modalHTML = "<div id='exportmodal' class='modal'><div class='modal-header'><a href='#' class='close'>&times;</a><h3>Export Clipping as HTML</h3><div class='modal-body'><form><textarea class='xxlarge' rows='8'>" + data + "</textarea></form></div></div></div>";
+      $(modalHTML).appendTo('body').modal();
+    });
+    return false;
+  });
+
+  $("#exportmodal .close").live("click", function() {
+    $(this).parents(".modal").remove();
+    return false;
+  });
+
+  
+  $(".book_html_export").click(function() {
+    $("#exportmodal").remove();
+    $.get(this.href, function(data) {
+      var modalHTML = "<div id='exportmodal' class='modal'><div class='modal-header'><a href='#' class='close'>&times;</a><h3>Export Book as HTML</h3><div class='modal-body'><form><textarea class='xxlarge' rows='8'>" + data + "</textarea></form></div></div></div>";
+      $(modalHTML).appendTo('body').modal();
+    });
+    return false;
+  });
+
   /* instapaper form stuff */
 
   $(".instapaper_form").hide();
