@@ -55,13 +55,15 @@ class ClippingProcessor
   end
 
   def self.parse_details(details)
-    if details.scan("|").size == 2 # we have the new 2-item kind of matching
-      page,location,datetime_string = details.split("|")
+    detail_fragments = details.split("|")
+    if details.size == 3
+      page,location,datetime_string = detail_fragments
       if page.match("Note")
-        # TODO: NO IDEA WHAT TO DO HERE.
-        {:puzzled => true,
-         :oops => true,
-         :is_note => true}
+        # TODO: NO IDEA WHAT TO DO HERE. (because I've never encountered this)
+        page = page.gsub(/\D/,"").to_i
+        {:is_note => true,
+         :page => page,
+         :clipped_at => datetime_from_string(datetime_string)}
       elsif page.match("Highlight")
         page = page.gsub(/\D/,"").to_i
         locations = location.strip.gsub("Loc. ", "")
@@ -72,11 +74,9 @@ class ClippingProcessor
          :end_loc => end_loc,
          :is_highlight => true,
          :clipped_at => datetime_from_string(datetime_string)}
-      else
-        {:oops => true}
       end
     else
-      location,datetime_string = details.split("|")
+      location,datetime_string = detail_fragments
       if location.match("Note")
         is_note = true
         location = location.gsub('- Note Loc. ', "").strip.to_i
@@ -92,8 +92,6 @@ class ClippingProcessor
          :end_loc => end_loc,
          :is_highlight => true,
          :clipped_at => datetime_from_string(datetime_string)}
-      else
-        {:oops => true}
       end
     end
   end
