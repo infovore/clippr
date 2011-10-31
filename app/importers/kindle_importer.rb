@@ -79,10 +79,8 @@ class KindleImporter
       if location.match("Note")
         is_note = true
         location = location.gsub('- Note Loc. ', "").strip.to_i
-        start_loc,end_loc = location, location
 
-        {:start_loc => start_loc,
-         :end_loc => end_loc,
+        {:location => location,
          :is_note => true,
          :clipped_at => datetime_from_string(datetime_string)}
       elsif location.match("Highlight") # thus ignoring bookmarks.
