@@ -20,20 +20,21 @@ class Import < ActiveRecord::Base
     all_items = ClippingProcessor.process(raw_text)
     
     # now let's walk that and find new items.
+    # this method returns the number of new items it found.
     create_new_items_for_import_from_processed_chunks(all_items, import)
   end
   
   private
 
-  def create_new_items_for_import_from_processed_chunks(all_items, import)
+  def self.create_new_items_for_import_from_processed_chunks(all_items, import)
     new_items_count = 0
     all_items.each do |item|
       author_obj = Author.find_or_create_by_name(item[:author])
       book_obj = Book.find_or_create_by_title_and_author_id(item[:title], author_obj.id)
       if item[:is_note]
-        unless Note.first(:conditions => {:content => item[:content], :clipped_at => item[:datetime]})
+        unless Note.first(:conditions => {:content => item[:content], :clipped_at => item[:clipped_at]})
           note = Note.create(:content => item[:content],
-                      :clipped_at => item[:datetime],
+                      :clipped_at => item[:clipped_at],
                       :location => item[:location],
                       :author_id => author_obj.id,
                       :book => book_obj,
@@ -42,13 +43,13 @@ class Import < ActiveRecord::Base
           new_items_count += 1
         end
       elsif item[:is_highlight]
-        unless Clipping.first(:conditions => {:content => item[:content], :clipped_at => item[:datetime]})
+        unless Clipping.first(:conditions => {:content => item[:content], :clipped_at => item[:clipped_at]})
           clipping = Clipping.create(:content => item[:content],
-                          :clipped_at => item[:datetime],
+                          :clipped_at => item[:clipped_at],
                           :start_location => item[:start_loc],
                           :end_location => item[:end_loc],
                           :author_id => author_obj.id,
-                          :book => book,
+                          :book => book_obj,
                           :import => import)
           new_items_count += 1
         end
