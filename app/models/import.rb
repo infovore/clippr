@@ -17,7 +17,7 @@ class Import < ActiveRecord::Base
     end
 
     # now let's turn the kindle file into a big hash of things
-    all_items = KindleImporter.process(raw_text)
+    all_items = ClippingProcessor.process(raw_text)
     
     # now let's walk that and find new items.
     create_new_items_for_import_from_processed_chunks(all_items, import)

@@ -1,4 +1,4 @@
-class KindleImporter
+class ClippingProcessor
   def self.process(input_text)
     chunks = input_text.gsub("\r", "").split("==========\n")
     output = chunks.map do |chunk|
@@ -60,6 +60,7 @@ class KindleImporter
       if page.match("Note")
         # TODO: NO IDEA WHAT TO DO HERE.
         {:puzzled => true,
+         :oops => true,
          :is_note => true}
       elsif page.match("Highlight")
         page = page.gsub(/\D/,"").to_i
