@@ -34,7 +34,6 @@ class Import < ActiveRecord::Base
       if item[:is_note]
         unless Note.first(:conditions => {:content => item[:content], :clipped_at => item[:clipped_at]})
           note = Note.create(:content => item[:content],
-                      :clipped_at => item[:clipped_at],
                       :location => item[:location],
                       :author_id => author_obj.id,
                       :book => book_obj,
