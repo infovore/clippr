@@ -56,7 +56,7 @@ class Clipping < ActiveRecord::Base
   
   def to_xml(options={})
     super({:except => ['import_id', 'id', 'author_id','book_id', 'created_at','updated_at', 'title'],
-          :include => {:instapaper_reference => {}, :book => {:include => :author}}}.merge(options))
+          :include => {:instapaper_reference => {}, :note => {}, :book => {:include => :author}}}.merge(options))
   end
 
   def to_templated_html(template)
