@@ -56,7 +56,7 @@ class ClippingProcessor
 
   def self.parse_details(details)
     detail_fragments = details.split("|")
-    if details.size == 3
+    if detail_fragments.size == 3 # recently changed this from details.size. Check!
       page,location,datetime_string = detail_fragments
       if page.match("Note")
         # TODO: NO IDEA WHAT TO DO HERE. (because I've never encountered this)
