@@ -16,37 +16,39 @@ class Import < ActiveRecord::Base
       f << raw_text
     end
 
-    # now let's turn the kindle file into a big hash of things
-    all_items = ClippingProcessor.process(raw_text)
+    # now let's turn the kindle file into lots of chunks
+    chunks = ClippingProcessor.process(raw_text)
     
     # now let's walk that and find new items.
     # this method returns the number of new items it found.
-    create_new_items_for_import_from_processed_chunks(all_items, import)
+    create_new_items_for_import_from_processed_chunks(chunks, import)
   end
   
   private
 
-  def self.create_new_items_for_import_from_processed_chunks(all_items, import)
+  def self.create_new_items_for_import_from_processed_chunks(chunks, import)
     new_items_count = 0
-    all_items.each do |item|
-      author_obj = Author.find_or_create_by_name(item[:author])
-      book_obj = Book.find_or_create_by_title_and_author_id(item[:title], author_obj.id)
-      if item[:is_note]
-        unless Note.first(:conditions => {:content => item[:content], :clipped_at => item[:clipped_at]})
-          note = Note.create(:content => item[:content],
-                      :location => item[:location],
+    chunks.each do |chunk|
+      author_obj = Author.find_or_create_by_name(chunk.author)
+      book_obj = Book.find_or_create_by_title_and_author_id(chunk.title, author_obj.id)
+      if chunk.is_note
+        unless Note.first(:conditions => {:content => chunk.content, :clipped_at => chunk.clipped_at})
+          note = Note.create(:content => chunk.content,
+                      :location => chunk.location,
+                      :page => chunk.page
                       :author_id => author_obj.id,
                       :book => book_obj,
                       :import => import,
-                      :related_clipping => Clipping.find_related_clipping(item[:location]))
+                      :related_clipping => Clipping.find_related_clipping(chunk.location))
           new_items_count += 1
         end
-      elsif item[:is_highlight]
-        unless Clipping.first(:conditions => {:content => item[:content], :clipped_at => item[:clipped_at]})
-          clipping = Clipping.create(:content => item[:content],
-                          :clipped_at => item[:clipped_at],
-                          :start_location => item[:start_loc],
-                          :end_location => item[:end_loc],
+      elsif chunk.is_highlight
+        unless Clipping.first(:conditions => {:content => chunk.content, :clipped_at => chunk.clipped_at})
+          clipping = Clipping.create(:content => chunk.content,
+                          :clipped_at => chunk.clipped_at,
+                          :start_location => chunk.start_loc,
+                          :end_location => chunk.end_loc,
+                          :page => chunk.page,
                           :author_id => author_obj.id,
                           :book => book_obj,
                           :import => import)
