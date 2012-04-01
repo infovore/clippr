@@ -15,11 +15,19 @@ class Chunk
 
   def method_missing(m, *args, &block)
     # keeps all the details on the details objects, but delegates up.
-    if @details.has_key?(m.to_sym)
+    if @details && @details.has_key?(m.to_sym)
       @details[m.to_sym]
     else
       super
     end
+  end
+
+  def is_note
+    @details && details[:is_note]
+  end
+
+  def is_highlight
+    @details && details[:is_highlight]
   end
 
   def self.new_from_raw(raw_chunks)
@@ -71,9 +79,10 @@ class Chunk
   end
 
   def parse_detail(detail)
-    if detail[:page].match("Note") || detail[:location].match("Note")
+    puts self.inspect
+    if (detail[:page] && detail[:page].match("Note")) || detail[:location].match("Note")
       parse_note(detail)
-    elsif detail[:page].match("Highlight") || detail[:location].match("Highlight")
+    elsif (detail[:page] && detail[:page].match("Highlight")) || detail[:location].match("Highlight")
       parse_highlight(detail)
     end
   end
@@ -87,6 +96,7 @@ class Chunk
     end
 
     {:is_note => true,
+     :is_highlight => false,
      :page => page,
      :location => location,
      :clipped_at => datetime_from_string(detail[:datetime])}
@@ -108,6 +118,7 @@ class Chunk
      :start_loc => start_loc,
      :end_loc => end_loc,
      :is_highlight => true,
+     :is_note => false,
      :clipped_at => datetime_from_string(detail[:datetime])}
   end
 end
