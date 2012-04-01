@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114134507) do
+ActiveRecord::Schema.define(:version => 20120401211347) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20111114134507) do
     t.datetime "updated_at"
     t.integer  "start_location"
     t.integer  "end_location"
+    t.string   "page"
   end
 
   create_table "imports", :force => true do |t|
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20111114134507) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "related_clipping_id"
+    t.string   "page"
+    t.datetime "clipped_at"
   end
 
   create_table "settings", :force => true do |t|
