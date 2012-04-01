@@ -30,7 +30,12 @@ class Chunk
     @details && details[:is_highlight]
   end
 
-  def self.new_from_raw(raw_chunks)
+  def self.create_from_raw_text(raw_text)
+    raw_chunks = raw_text.gsub("\r", "").split("==========\n")
+    self.create_from_raw_chunks(raw_chunks)
+  end
+
+  def self.create_from_raw_chunks(raw_chunks)
     raw_chunks.map {|c| Chunk.new(c)}
   end
 
