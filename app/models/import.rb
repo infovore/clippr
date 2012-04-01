@@ -29,29 +29,14 @@ class Import < ActiveRecord::Base
   def self.create_new_items_for_import_from_processed_chunks(chunks, import)
     new_items_count = 0
     chunks.each do |chunk|
-      author_obj = Author.find_or_create_by_name(chunk.author)
-      book_obj = Book.find_or_create_by_title_and_author_id(chunk.title, author_obj.id)
       if chunk.is_note
         unless Note.first(:conditions => {:content => chunk.content, :clipped_at => chunk.clipped_at})
-          note = Note.create(:content => chunk.content,
-                      :location => chunk.location,
-                      :page => chunk.page
-                      :author_id => author_obj.id,
-                      :book => book_obj,
-                      :import => import,
-                      :related_clipping => Clipping.find_related_clipping(chunk.location))
+          note = Note.create_from_chunk_for_import(chunk,import)
           new_items_count += 1
         end
       elsif chunk.is_highlight
         unless Clipping.first(:conditions => {:content => chunk.content, :clipped_at => chunk.clipped_at})
-          clipping = Clipping.create(:content => chunk.content,
-                          :clipped_at => chunk.clipped_at,
-                          :start_location => chunk.start_loc,
-                          :end_location => chunk.end_loc,
-                          :page => chunk.page,
-                          :author_id => author_obj.id,
-                          :book => book_obj,
-                          :import => import)
+          clipping = Clipping.create_from_chunk_for_import(chunk, import)
           new_items_count += 1
         end
       end

@@ -11,19 +11,20 @@ class Clipping < ActiveRecord::Base
   def loc
     start_location
   end
-  
-  def self.location_string_to_array(locations)
-    start_loc, end_string = locations.split("-")
-    if end_string
-      i = start_loc.size - end_string.size - 1
-      prefix = start_loc[0..i]
-      end_loc = prefix + end_string
-      [start_loc.to_i, end_loc.to_i]
-    else
-      [start_loc.to_i, start_loc.to_i]
-    end
-  end
 
+  def self.create_from_chunk_for_import(chunk, import)
+    author_obj = Author.find_or_create_by_name(chunk.author)
+    book_obj = Book.find_or_create_by_title_and_author_id(chunk.title, author_obj.id)
+    self.create(:content => chunk.content,
+                :clipped_at => chunk.clipped_at,
+                :start_location => chunk.start_loc,
+                :end_location => chunk.end_loc,
+                :page => chunk.page,
+                :author_id => author_obj.id,
+                :book_id => book_obj.id,
+                :import_id => import.id)
+  end
+  
   def self.find_related_clipping(location)
     Clipping.first(:conditions => ["start_location <= ? AND end_location >= ?", location, location])
   end
