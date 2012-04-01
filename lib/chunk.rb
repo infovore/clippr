@@ -1,5 +1,6 @@
 class Chunk
   attr_reader :title, :author, :details, :content
+
   def initialize(chunk_string)
     lines = chunk_string.split("\n")
     title_and_author = lines.shift
@@ -7,7 +8,6 @@ class Chunk
     @title, @author = dechunk_title_and_author(title_and_author)
 
     @details = parse_details(lines.shift)
-
 
     lines.shift
     @content = lines.join
@@ -71,18 +71,10 @@ class Chunk
   end
 
   def parse_detail(detail)
-    if detail[:page]
-      if detail[:page].match("Note")
-        parse_note(detail)
-      elsif detail[:page].match("Highlight")
-        parse_highlight(detail)
-      end
-    else
-      if detail[:location].match("Note")
-        parse_note(detail)
-      elsif detail[:location].match("Highlight")
-        parse_highlight(detail)
-      end
+    if detail[:page].match("Note") || detail[:location].match("Note")
+      parse_note(detail)
+    elsif detail[:page].match("Highlight") || detail[:location].match("Highlight")
+      parse_highlight(detail)
     end
   end
 
