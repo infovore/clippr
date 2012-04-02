@@ -17,7 +17,8 @@ class Import < ActiveRecord::Base
     end
 
     # now let's turn the kindle file into lots of chunks
-    chunks = Chunk.create_from_raw_text(raw_text)
+    unprocessed_chunks = Chunk.create_from_raw_text(raw_text)
+    processed_chunks = unprocessed_chunks.each {|c| c.process}
     
     # now let's walk that and find new items.
     # this method returns the number of new items it found.
