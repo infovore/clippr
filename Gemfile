@@ -29,3 +29,4 @@ gem 'kaminari'
 gem 'stringex'
 gem "rails-settings", :git => "git://github.com/100hz/rails-settings.git"
 
+gem 'rspec-rails'
