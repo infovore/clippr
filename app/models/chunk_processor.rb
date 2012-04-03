@@ -13,10 +13,13 @@ module ChunkProcessor
 
   def location_string_to_array(locations)
     start_loc, end_string = locations.split("-")
-    if end_string
+    if end_string && end_string.to_i - start_loc.to_i < 0
       i = start_loc.size - end_string.size - 1
       prefix = start_loc[0..i]
       end_loc = prefix + end_string
+      [start_loc.to_i, end_loc.to_i]
+    elsif end_string
+      end_loc = end_string
       [start_loc.to_i, end_loc.to_i]
     else
       [start_loc.to_i, start_loc.to_i]
