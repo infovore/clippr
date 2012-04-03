@@ -45,7 +45,6 @@ module ChunkProcessor
   end
 
   def parse_detail(detail)
-    puts self.inspect
     if (detail[:page] && detail[:page].match("Note")) || detail[:location].match("Note")
       parse_note(detail)
     elsif (detail[:page] && detail[:page].match("Highlight")) || detail[:location].match("Highlight")

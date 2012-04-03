@@ -54,7 +54,7 @@ class ChunkProcessorSpec
     end
   end
 
-  describe "parsing details" do
+  describe "parsing a details string" do
     describe "with three fragments" do
       before(:each) do
         @string = "- Highlight on Page 63 | Loc. 1270-72  | Added on Tuesday, October 11, 2011, 08:49 AM"
