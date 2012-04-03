@@ -32,7 +32,7 @@ module ChunkProcessor
   end
 
   def parse_details(details)
-    detail_fragments = details.split("|")
+    detail_fragments = details.split("|").map{|d| d.strip}
     if detail_fragments.size == 3 # recently changed this from details.size. Check!
       parse_detail({:page => detail_fragments[0],
                     :location => detail_fragments[1],
