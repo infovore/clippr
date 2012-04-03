@@ -18,8 +18,17 @@ class ChunkProcessorSpec
     end
 
     describe "and there is an author" do
-      it "should extract the author"
-      it "should extract the title"
+      before(:each) do
+        @string = "Reamde (Neal Stephenson)"
+      end
+
+      it "should extract the author" do
+        dechunk_title_and_author(@string)[1].should == "Neal Stephenson"
+      end
+
+      it "should extract the title" do
+        dechunk_title_and_author(@string)[0].should == "Reamde"
+      end
     end
   end
 
