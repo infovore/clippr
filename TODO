@@ -1,28 +1,12 @@
 First run
-Prettier
-   - user Twitter Bootstrap
 Pictures?
 admin page - to clear db, mainly.
 
-A thought from Aaron that would be nice: how about "export a year of clippings". Ie: 
-date-bounded export. Would be nice. (export flat site; export flat site limited by range)
-
-export:
-  √ book (method on book controller)
-  √ all (method on exports controller)
-  √ date range (method on exports controller)
-  individual clipping to markup in a lightbox? (method on... clipping?)
-    - should there be a little customisable options field with a template?
-  fine-tune default fields for clipping#to_xml - should definitely remove id, for instance.
-
 search?
-
-
-Rename Book:
-
-book has_one BookName, which you create on ingest, which prepopulates with the name and also a slug.
-you edit the bookname, never the book.
 
 Rename Author:
 
 this is more complex, as many books have to belong to an author. If you edit the name of an author - and you change it to an existing author - we then join it to the appropriate thing. Might be worth seeing how bootstrap does autocomplete? this is basically a many to many join, unlike naming books, so it feels a bit more complicated.
+
+
+Port js to backbone?
