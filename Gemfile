@@ -15,7 +15,7 @@ gem "rails-settings", :git => "git://github.com/100hz/rails-settings.git"
 # Functionality
 
 group :assets do
-  gem 'therubyracer'
+  gem 'therubyracer', :platforms => :ruby, :require => 'v8'
   gem 'less'
   gem 'uglifier', '>= 1.0.3'
 end
