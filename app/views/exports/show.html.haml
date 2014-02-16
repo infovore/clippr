@@ -8,7 +8,7 @@
 
 %h2 Export clippings by date range
 
-- form_tag "/export/download", :method => :get do
+= form_tag "/export/download", :method => :get do
   .clearfix
     %label Start Date
     .input
@@ -24,7 +24,7 @@
 
 %h2 HTML template for clipping export
 
-- form_tag "/export/update_html_settings" do
+= form_tag "/export/update_html_settings" do
   .clearfix
     %label Single clipping format
     .input
