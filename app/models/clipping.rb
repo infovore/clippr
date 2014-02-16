@@ -60,6 +60,10 @@ class Clipping < ActiveRecord::Base
           :include => {:instapaper_reference => {}, :note => {}, :book => {:include => :author}}}.merge(options))
   end
 
+  def to_json(options={})
+    super
+  end
+
   def to_templated_html(template)
     output = template.gsub("$quote", self.content)
     output = output.gsub("$locations", "Locations: " + self.location_string)

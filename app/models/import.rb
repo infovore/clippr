@@ -2,7 +2,7 @@ class Import < ActiveRecord::Base
   has_many :clippings
   
   def self.perform_import_from_file(file)
-    raw_text = File.open(file).readlines.join.gsub(/\r/, "")
+    raw_text = File.open(file, :encoding => 'iso-8859-1').readlines.join.gsub(/\r/, "")
     Import.perform_import_from_raw_text(raw_text)
   end
 
@@ -22,7 +22,7 @@ class Import < ActiveRecord::Base
     
     # now let's walk that and find new items.
     # this method returns the number of new items it found.
-    create_new_items_for_import_from_processed_chunks(chunks, import)
+    create_new_items_for_import_from_processed_chunks(processed_chunks, import)
   end
   
   private
